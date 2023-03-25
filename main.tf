@@ -23,3 +23,50 @@ resource "google_container_cluster" "primary" {
   initial_node_count = 2
 }
 
+resource "kubernetes_deployment" "kd" {
+  metadata {
+    name      = "nuwe-app"
+    namespace = kubernetes_namespace.kn.metadata.0.name
+  }
+  spec {
+    replicas = 1
+    selector  {
+      match_labels = {
+        app = "nuwe-app"
+      }
+    }
+    template {
+      metadata {
+        labels  = {
+          app = "nuwe-app"
+        }
+      }
+      spec {
+        container {
+          image = "gcr.io/abx50c5xvoxqqnhrwaqfziooysf2or/mms-cloud-skeleton-fork@sha256:0d4fdda135821207879552ecddf3db4dea1805568bd60106fb61a40a6b2f1589"
+          name  = "nuwe-app"
+          port {
+            container_port = 8080
+          }
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_service" "ks" {
+  metadata {
+    name      = "nuwe-app"
+    namespace = kubernetes_namespace.kn.metadata.0.name
+  }
+  spec {
+    selector = {
+      app = kubernetes_deployment.kd.spec.0.template.0.metadata.0.labels.app
+    }
+    type = "LoadBalancer"
+    port {
+      port        = 80
+      target_port = 8080
+    }
+  }
+}
