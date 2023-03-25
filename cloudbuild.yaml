@@ -1,0 +1,25 @@
+- id: 'tf init'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - |
+      terraform init
+      echo "*************** TERRAFORM INIT ******************"
+- id: 'tf plan'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+      terraform plan
+      echo "*************** TERRAFOM PLAN ******************"
+- id: 'tf apply'
+  name: 'hashicorp/terraform:1.0.0'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+      terraform apply -auto-approve
+      echo "***************************** TERRAFROM APPLY *******************************"
+      
