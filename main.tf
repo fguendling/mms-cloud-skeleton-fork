@@ -13,7 +13,7 @@ provider "google" {
 
 data "google_client_config" "default" {}
 resource "google_container_cluster" "primary" {
-  name = "nuwe-web-app"
+  name = "nuwe-web-app2"
   location = "us-central1-a"
   initial_node_count = 2
 }
