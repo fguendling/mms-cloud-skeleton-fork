@@ -1,0 +1,6 @@
+version: "3.9"
+services:
+  web:
+    image: gcr.io/abx50c5xvoxqqnhrwaqfziooysf2or/mms-cloud-skeleton-fork@sha256:61dc8b6cef2fba42c87ac68ef672758f21aad8efbbb42844d137f50dfd517e72
+    ports:
+      - "8000:3000"
