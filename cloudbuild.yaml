@@ -24,3 +24,5 @@ steps:
       terraform apply -auto-approve
       echo "***************************** TERRAFROM APPLY *******************************"
       
+options:
+  logging: CLOUD_LOGGING_ONLY
