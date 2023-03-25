@@ -46,7 +46,7 @@ resource "kubernetes_deployment" "kd" {
           image = "gcr.io/abx50c5xvoxqqnhrwaqfziooysf2or/mms-cloud-skeleton-fork@sha256:0d4fdda135821207879552ecddf3db4dea1805568bd60106fb61a40a6b2f1589"
           name  = "nuwe-app"
           port {
-            container_port = 8080
+            container_port = 3000
           }
         }
       }
@@ -65,7 +65,7 @@ resource "kubernetes_service" "ks" {
     type = "LoadBalancer"
     port {
       port        = 80
-      target_port = 8080
+      target_port = 3000
     }
   }
 }
