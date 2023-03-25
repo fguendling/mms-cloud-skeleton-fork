@@ -27,7 +27,6 @@ provider "kubernetes" {
 resource "kubernetes_deployment" "kd" {
   metadata {
     name      = "nuwe-app"
-    namespace = kubernetes_namespace.kn.metadata.0.name
   }
   spec {
     replicas = 1
@@ -58,7 +57,6 @@ resource "kubernetes_deployment" "kd" {
 resource "kubernetes_service" "ks" {
   metadata {
     name      = "nuwe-app"
-    namespace = kubernetes_namespace.kn.metadata.0.name
   }
   spec {
     selector = {
